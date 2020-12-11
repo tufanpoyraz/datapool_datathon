@@ -5,6 +5,9 @@ from nltk.corpus import stopwords
 from textblob import TextBlob, Word
 import string
 
+#nltk.download('stopwords')
+#nltk.download('wordnet')
+
 
 pathTufan="/home/tufan/Desktop/datathon/"
 #pathBurak=?
