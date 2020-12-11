@@ -38,13 +38,16 @@ for i in df_product["cleaned2"]:
         y.append(j)
         for n, i in enumerate(y):
             y[n] = Word(i).lemmatize() #kelime köklerine indirgeme
-    cleaned3.append(y)
+
+    cleaned3.append(" ".join(y))
     y=[]
 df_product["cleaned3"]=cleaned3
 
 print("11111",df_product["cleaned"])
 print("22222",df_product["cleaned2"])
 print("333333",df_product["cleaned3"])
+
+#diğer sütünlar silinebilir
 
 """with pd.option_context('display.max_rows', 20, 'display.max_columns', None):
     print(df_product)"""
