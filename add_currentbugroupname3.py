@@ -11,18 +11,18 @@ import string
 pathTufan="/home/tufan/Desktop/datathon/"
 #pathBurak=?
 
-df_basket = pd.read_csv(pathTufan+'df_basket.csv')
+#df_basket = pd.read_csv(pathTufan+'df_basket.csv')
 """
 df_search = pd.read_csv(pathTufan+'df_search_term.csv')
 df_trx = pd.read_csv(pathTufan+'df_trx.csv')
-df_visit = pd.read_csv(pathTufan+'df_visit.csv')
 """
-df_demo = pd.read_csv(pathTufan+'df_demo.csv')
-df_fav = pd.read_csv(pathTufan+'df_fav.csv')
+#df_demo = pd.read_csv(pathTufan+'df_demo.csv')
+#df_fav = pd.read_csv(pathTufan+'df_fav.csv')
+df_visit = pd.read_csv(pathTufan+'df_visit.csv')
 
 df_product = pd.read_csv(pathTufan+'df_product.csv')
-df_target = pd.read_csv(pathTufan+'df_target_train.csv')
-df_sample = pd.read_csv(pathTufan+'sample_submission.csv')
+#df_target = pd.read_csv(pathTufan+'df_target_train.csv')
+#df_sample = pd.read_csv(pathTufan+'sample_submission.csv')
 
 
 #df_basket=df_basket[:1000] # denemek için dataframe in ilk kısmını alıyor
@@ -30,14 +30,14 @@ df_sample = pd.read_csv(pathTufan+'sample_submission.csv')
 
 
 x=[]
-for i in df_fav["contentid"]:
+for i in df_visit["contentid"]:
     category=df_product.loc[df_product['contentid'] == i]["currentbugroupname"].values
     #print(i,category)
 
     if len(category) != 0:
         x.append(category[0])
     else:
-        df_fav.drop(df_fav.loc[df_fav['contentid'] == i].index,inplace=True)
-df_fav["currentbugroupname"]=x
+        df_visit.drop(df_visit.loc[df_visit['contentid'] == i].index,inplace=True)
+df_visit["currentbugroupname"]=x
 
-df_fav.to_csv(pathTufan+'df_fav2.csv', index = False, header=True)
+df_visit.to_csv(pathTufan+'df_visit2.csv', index = False, header=True)

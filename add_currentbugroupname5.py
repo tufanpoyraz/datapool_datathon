@@ -25,19 +25,13 @@ df_product = pd.read_csv(pathTufan+'df_product.csv')
 #df_sample = pd.read_csv(pathTufan+'sample_submission.csv')
 
 
+df_visit=df_visit.sort_values('contentid')
+df_product=df_product.sort_values('contentid')
+
 #df_basket=df_basket[:1000] # denemek için dataframe in ilk kısmını alıyor
 
-
-
-x=[]
-for i in df_visit["contentid"]:
-    category=df_product.loc[df_product['contentid'] == i]["currentbugroupname"].values
-    #print(i,category)
-
-    if len(category) != 0:
-        x.append(category[0])
-    else:
-        df_visit.drop(df_visit.loc[df_visit['contentid'] == i].index,inplace=True)
-df_visit["currentbugroupname"]=x
-
+df_visit["CGN"]=df_visit["contentid"].apply(lambda x: df_product.loc[df_product['contentid'] == round(x)]["currentbugroupname"].values[0] if len(df_product.loc[df_product['contentid'] == round(x)]["currentbugroupname"].values) > 0 else None )
+"""
+with pd.option_context('display.max_rows', 100, 'display.max_columns', None):
+    print(df_visit)"""
 df_visit.to_csv(pathTufan+'df_visit2.csv', index = False, header=True)

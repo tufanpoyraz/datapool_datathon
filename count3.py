@@ -33,11 +33,11 @@ df_search = pd.read_csv(pathTufan+'df_search3.csv')
 
 
 
-#df_sample["userid"]=df_sample["userid_currentbugroupname"].apply(lambda x:x.split("_")[0])
+df_sample["userid"]=df_sample["userid_currentbugroupname"].apply(lambda x:round(int(x.split("_")[0])))
 #frames = [df_target["userid"], df_sample["userid"]]
 #database["userid"] = pd.concat(frames)
 
-database=pd.DataFrame(df_target["userid"].unique(),columns=["userid"])
+database=pd.DataFrame(df_sample["userid"].unique(),columns=["userid"])
 
 print(database)
 
@@ -96,7 +96,7 @@ for i in database["userid"]:
 database=pd.DataFrame(bigTable,columns=["userid","currentbugroupname","gender","age","tenure","addtobasket_count","fav_count","quantity","price","search_count"])
 
 
-database.to_csv(pathTufan+'database_target.csv', index = False, header=True)
+database.to_csv(pathTufan+'database_sample.csv', index = False, header=True)
 
 
 
