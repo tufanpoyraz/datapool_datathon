@@ -28,9 +28,9 @@ df_product = pd.read_csv(pathTufan+'df_product.csv')
 df_visit=df_visit.sort_values('contentid')
 df_product=df_product.sort_values('contentid')
 
+print(df_visit)
 #df_basket=df_basket[:1000] # denemek için dataframe in ilk kısmını alıyor
 
-df_visit["CGN"]=df_visit["contentid"].apply(lambda x: df_product.loc[df_product['contentid'] == round(x)]["currentbugroupname"].values[0] if len(df_product.loc[df_product['contentid'] == round(x)]["currentbugroupname"].values) > 0 else None )
 """
 with pd.option_context('display.max_rows', 100, 'display.max_columns', None):
     print(df_visit)"""

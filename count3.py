@@ -26,6 +26,9 @@ df_product = pd.read_csv(pathTufan+'df_product.csv')
 df_target = pd.read_csv(pathTufan+'df_target_train.csv')
 df_sample = pd.read_csv(pathTufan+'sample_submission.csv')
 df_search = pd.read_csv(pathTufan+'df_search3.csv')
+df_ans = pd.read_csv(pathTufan+'X_ans.csv')
+df_ans["0"]=df_ans["0"].astype(str)
+df_ans["userid_currentbugroupname"]=df_ans["0"]+"_"+df_ans["1"]
 
 
 
@@ -37,12 +40,13 @@ df_sample["userid"]=df_sample["userid_currentbugroupname"].apply(lambda x:round(
 #frames = [df_target["userid"], df_sample["userid"]]
 #database["userid"] = pd.concat(frames)
 
-database=pd.DataFrame(df_sample["userid"].unique(),columns=["userid"])
-
-print(database)
+print(df_sample.head(20))
+database=df_sample
+database.drop(columns="target",inplace=True)
+print(database.head(20))
 
 currentbugroupname=['Ayakkabı & Çanta', 'Branded Tekstil', 'FMCG' ,'Ev' ,'GAS', 'GM' ,'Elektronik',
- 'Kozmetik' ,'Aksesuar & Saat & Gözlük' ,'Private Label', 'Mobilya', 'UNKNOWN',
+ 'Kozmetik' ,'Aksesuar & Saat & Gözlük' ,'Private Label', 'Mobilya',
  'Digital Goods']
 
 
@@ -54,6 +58,7 @@ for i in database["userid"]:
     df_fav_userid=df_fav.loc[df_fav['userid'] == i]
     df_trx_userid=df_trx.loc[df_trx['userid'] == i]
     df_search_userid=df_search.loc[df_search['userid'] == i]
+
 
     for j in currentbugroupname:
 
@@ -96,11 +101,11 @@ for i in database["userid"]:
 database=pd.DataFrame(bigTable,columns=["userid","currentbugroupname","gender","age","tenure","addtobasket_count","fav_count","quantity","price","search_count"])
 
 
-database.to_csv(pathTufan+'database_sample.csv', index = False, header=True)
+database.to_csv(pathTufan+'database_sample3.csv', index = False, header=True)
 
 
 
 
 
-with pd.option_context('display.max_rows', None, 'display.max_columns', None):
-    print(database)
+"""with pd.option_context('display.max_rows', None, 'display.max_columns', None):
+    print(database)"""
