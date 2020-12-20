@@ -4,7 +4,6 @@ import pandas as pd
 
 
 pathTufan="/home/tufan/Desktop/datathon/"
-#pathBurak=?
 
 df_ans = pd.read_csv(pathTufan+'X_ans.csv')
 
@@ -21,7 +20,6 @@ for i in df_ans["userid_currentbugroupname"]:
 
 
 
-print(df_sample)
 
 df_sample.to_csv(pathTufan+'sample_submission2.csv', index = False, header=True)
 

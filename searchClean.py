@@ -10,19 +10,9 @@ import string
 
 
 pathTufan="/home/tufan/Desktop/datathon/"
-#pathBurak=?
 
-
-"""df_basket = pd.read_csv(pathTufan+'df_basket.csv')
-df_demo = pd.read_csv(pathTufan+'df_demo.csv')
-df_fav = pd.read_csv(pathTufan+'df_fav.csv')
-df_search = pd.read_csv(pathTufan+'df_search_term.csv')
-df_target = pd.read_csv(pathTufan+'df_target_train.csv')
-df_trx = pd.read_csv(pathTufan+'df_trx.csv')
-df_visit = pd.read_csv(pathTufan+'df_visit.csv')"""
 df_product = pd.read_csv(pathTufan+'df_product.csv')
 
-#df_product=df_product[:50] # denemek için dataframe in ilk kısmını alıyor
 
 df_product["cleaned"]=df_product["title"]+" "+df_product["categoryname"] #title ile kategori birleştirip yeni sütün
 
@@ -47,11 +37,7 @@ for i in df_product["cleaned"]:
 df_product["cleaned"]=cleaned3
 
 
-print("333333",df_product)
 
 df_product.to_csv(pathTufan+'df_product2.csv', index = False, header=True)
 
-#diğer sütünlar silinebilir
 
-"""with pd.option_context('display.max_rows', 20, 'display.max_columns', None):
-    print(df_product)"""

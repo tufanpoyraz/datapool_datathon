@@ -108,5 +108,3 @@ database.to_csv(pathTufan+'database_sample3.csv', index = False, header=True)
 
 
 
-"""with pd.option_context('display.max_rows', None, 'display.max_columns', None):
-    print(database)"""
